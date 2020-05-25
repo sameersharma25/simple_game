@@ -8,6 +8,8 @@ public class Shape {
     private int currentXPosition;
     private int currentYPosition;
     private int bottom;
+    private int maxLeft;
+    private int maxRight;
     private boolean isFallingFinished = false;
     private int redScale = 0;
     private int greenScale = 0;
@@ -18,6 +20,15 @@ public class Shape {
         this.currentYPosition = 0;
         this.bottom = 305;
 
+    }
+
+    public Shape(int redScale, int greenScale, int blueScale) {
+        this.currentXPosition = 50;
+        this.currentYPosition = 0;
+        this.bottom = 305;
+        this.redScale = redScale;
+        this.greenScale = greenScale;
+        this.blueScale = blueScale;
     }
 
     public int getBottom() {

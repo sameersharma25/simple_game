@@ -20,6 +20,15 @@ public class Board extends JPanel {
     private ArrayList<Shape> currentShapes = new ArrayList<Shape>();
     private int curX = 50;
     private int curY = 0;
+    private int[][] colorMatrix = {
+        {0,0,0},
+        {100,100,100},
+        {200, 200, 200},
+        {255,255,255},
+        {125,125,125},
+        {90,90,90},
+        {255,0,0}
+    };
 
 
 
@@ -59,9 +68,9 @@ public class Board extends JPanel {
             switch (keycode) {
 
                 case KeyEvent.VK_P: pause();
-                case KeyEvent.VK_LEFT: currShape.tryMove(curX-1 , curY); break;
-                case KeyEvent.VK_RIGHT: currShape.tryMove(curX+1, curY); break;
-                case KeyEvent.VK_UP: currShape.tryMove(curX, curY-1); break;
+                case KeyEvent.VK_LEFT: currShape.tryMove(currShape.getCurrentXPosition()-1 , currShape.getCurrentYPosition()); break;
+                case KeyEvent.VK_RIGHT: currShape.tryMove(currShape.getCurrentXPosition()+1, currShape.getCurrentYPosition()); break;
+                case KeyEvent.VK_UP: currShape.tryMove(currShape.getCurrentXPosition(), currShape.getCurrentYPosition()-1); break;
                 case KeyEvent.VK_DOWN: currShape.tryMove(currShape.getCurrentXPosition(), currShape.getCurrentYPosition()+1); break;
                 case KeyEvent.VK_D: currShape.oneLineDown(); break;
                 case KeyEvent.VK_X: System.exit(0);
@@ -110,7 +119,7 @@ public class Board extends JPanel {
         activeShape.setBottom(calculateBottom(activeShape));
         boolean status = activeShape.oneLineDown();
         if(status == false) {
-            Shape s2 = new Shape();
+            Shape s2 = new Shape(colorMatrix[currentShapes.size()-1][0], colorMatrix[currentShapes.size()-1][1], colorMatrix[currentShapes.size()-1][2]);
             currentShapes.add(s2);
         }
 
